@@ -26,7 +26,7 @@ find non marked CardView (Android Studio):\
 find non marked MaterialCardView (Android Studio):\
 `^\s*(?!\<\!\-\-ignore_mark\-\-\>)(\<com\.google\.android\.material\.card\.MaterialCardView)`
 
-replace:\
+replace:
 ```
 $0
 style="@style/UiCardView"
@@ -34,7 +34,7 @@ style="@style/UiCardView"
 
 Format inserted style
 -------------------------------------------------
-find inserted styles (VS Code): \
+find inserted styles (VS Code):
 ```
 ^style="@style/UiCardView"
 (\s+)android:
