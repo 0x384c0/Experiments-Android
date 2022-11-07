@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="verticalLinearLayout">@style/AppTheme.VerticalLinearLayout</item>
+        <item name="cardViewStyle">@style/AppTheme.CardView</item>
     </style>
 </resources>
