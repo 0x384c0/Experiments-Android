@@ -1,4 +1,4 @@
-package com.example.ui.view.progress
+package com.example.ui.views.progress
 
 import android.content.Context
 import android.graphics.Canvas

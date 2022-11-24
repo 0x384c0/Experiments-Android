@@ -1,4 +1,4 @@
-package com.example.ui.activities
+package com.example.ui.composables
 
 import androidx.lifecycle.ViewModel
 

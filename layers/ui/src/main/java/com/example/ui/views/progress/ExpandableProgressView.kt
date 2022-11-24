@@ -1,9 +1,8 @@
-package com.example.ui.view.progress
+package com.example.ui.views.progress
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.view.View
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates
 
