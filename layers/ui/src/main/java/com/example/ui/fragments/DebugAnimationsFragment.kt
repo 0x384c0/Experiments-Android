@@ -1,8 +1,8 @@
-package com.example.ui
+package com.example.ui.fragments
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +10,8 @@ import android.widget.SeekBar
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.children
 import androidx.core.view.marginBottom
+import androidx.fragment.app.Fragment
+import com.example.ui.activities.RootActivity
 import com.example.ui.databinding.FragmentDebugAnimationsBinding
 import com.example.ui.view.progress.MultiProgressView
 
