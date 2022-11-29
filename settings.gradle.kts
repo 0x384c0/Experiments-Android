@@ -13,7 +13,8 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Experiments-Android"
-include ':app'
+include(":app")
+include("app", "core")
 
-include ':ui'
-project(':ui').projectDir = new File(rootDir, 'layers/ui/')
+include(":ui")
+project(":ui").projectDir = File(rootDir, "layers/ui/")
