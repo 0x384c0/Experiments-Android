@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -30,14 +30,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         viewBinding = true
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
@@ -45,31 +45,31 @@ kapt {
     correctErrorTypes = true
 }
 
-dependencies { //TODO: use kts https://docs.gradle.org/current/userguide/kotlin_dsl.html
-    //Deprecated
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.5.1")
-    implementation("com.google.android.material:material:1.7.0")
+dependencies {
+    // Android
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+
+    // Legacy
+    implementation(libs.google.android.material)
 
     // Compose
-    val composeBom = platform("androidx.compose:compose-bom:2022.11.00")
+    val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation("androidx.compose.ui:ui-viewbinding")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation(libs.androidx.compose.ui.viewbinding)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.runtime.livedata)
 
-    implementation("androidx.activity:activity-compose")
-
-    implementation("androidx.navigation:navigation-compose:2.5.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
+    kapt(libs.hilt.compiler)
 }
