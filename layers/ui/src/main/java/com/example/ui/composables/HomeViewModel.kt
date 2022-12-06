@@ -10,7 +10,7 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-internal class HomeViewModel @Inject constructor(private val interactor: TestInteractor) : BaseViewModel() {
+internal class HomeViewModel @Inject constructor(private val interactor: TMPInteractor) : BaseViewModel() {
     // region UI Binding
     val state = MutableLiveData(HomeViewState("No state")).asNonMutable()
     // endregion
@@ -24,11 +24,13 @@ internal class HomeViewModel @Inject constructor(private val interactor: TestInt
     // endregion
 }
 
-interface TestInteractor {
+//TODO: https://www.reddit.com/r/all/top.json https://www.reddit.com/r/all/hot.json
+
+interface TMPInteractor {
     suspend fun updateState(oldState: Int): Int
 }
 
-internal class TestInteractorImpl @Inject constructor() : TestInteractor {
+internal class TMPInteractorImpl @Inject constructor() : TMPInteractor {
     override suspend fun updateState(oldState: Int): Int {
         return oldState + 1
     }
@@ -39,7 +41,7 @@ internal class TestInteractorImpl @Inject constructor() : TestInteractor {
 internal abstract class TestModule {
     @Binds
     abstract fun bindTestInteractorImpl(
-        testInteractorImpl: TestInteractorImpl
-    ): TestInteractor
+        impl: TMPInteractorImpl
+    ): TMPInteractor
 }
 

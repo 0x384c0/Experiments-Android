@@ -17,7 +17,7 @@ private const val ROUTE_ANIMATIONS = "animations_demo"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Root(
+internal fun AppDrawer(
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
 ) {
