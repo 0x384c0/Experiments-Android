@@ -60,7 +60,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -90,40 +92,28 @@ import com.example.presentation.data.mockPostFeed
 import com.example.presentation.R
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 @Composable
-internal fun Home(vm: HomeViewModel = hiltViewModel()) {
-    val postsFeed = mockPostFeed
-    HomeFeedScreen(
-        uiState = HomeUiState.HasPosts(
-            postsFeed = postsFeed,
-            selectedPost = postsFeed.highlightedPost,
-            isArticleOpen = false,
-            favorites = emptySet(),
-            isLoading = false,
-            errorMessages = emptyList(),
-            searchInput = ""
-        ),
-        showTopAppBar = false,
-        onToggleFavorite = {},
-        onSelectPost = {},
-        onRefreshPosts = {},
-        onErrorDismiss = {},
-        openDrawer = {},
-        homeListLazyListState = rememberLazyListState(),
-        snackbarHostState = SnackbarHostState(),
-        onSearchInputChanged = {}
-    )
-//    Column {
-//        vm.state.observeAsState().value?.let {
-//            Text(it.text)
-//            Button(onClick = vm::changeState) {
-//                Text("ChangeState")
-//            }
-//        }
-//    }
+internal fun Home(vm: HomeViewModel = hiltViewModel(),
+                  composableScope: CoroutineScope = rememberCoroutineScope()) {
+    vm.state.observeAsState().value?.let {
+        HomeFeedScreen(
+            uiState = it,
+            showTopAppBar = false,
+            onToggleFavorite = {},
+            onSelectPost = {},
+            onRefreshPosts = { composableScope.launch { vm.refresh() } },
+            onErrorDismiss = {},
+            openDrawer = {},
+            homeListLazyListState = rememberLazyListState(),
+            snackbarHostState = SnackbarHostState(),
+            onSearchInputChanged = {}
+        )
+    }
 }
 
 //@Preview("Home")

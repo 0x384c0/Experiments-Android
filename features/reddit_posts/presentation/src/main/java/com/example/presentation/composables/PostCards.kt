@@ -154,7 +154,7 @@ private fun PostImage(post: Post, modifier: Modifier = Modifier) {
 @Composable
 private fun PostTitle(post: Post) {
     Text(
-        text = post.title,
+        text = post.title ?: "",
         style = MaterialTheme.typography.titleMedium,
         maxLines = 3,
         overflow = TextOverflow.Ellipsis,

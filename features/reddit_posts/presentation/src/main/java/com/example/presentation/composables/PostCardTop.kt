@@ -42,7 +42,7 @@ fun PostCardTop(post: Post, modifier: Modifier = Modifier) {
         Spacer(Modifier.height(16.dp))
 
         Text(
-            text = post.title,
+            text = post.title ?: "",
             style = typography.titleLarge,
             modifier = Modifier.padding(bottom = 8.dp)
         )

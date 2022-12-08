@@ -1,6 +1,7 @@
 package com.example.domain.model
 
 data class RedditPostsModel(
+    val title: String?,
     val subreddit: String?,
     val authorFullName: String?,
     val subredditNamePrefixed: String?,

@@ -46,7 +46,7 @@ fun PostCardPopular(
 
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = post.title,
+                    text = post.title ?: "",
                     style = MaterialTheme.typography.headlineSmall,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis

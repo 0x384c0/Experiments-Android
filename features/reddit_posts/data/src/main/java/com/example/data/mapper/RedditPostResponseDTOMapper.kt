@@ -10,6 +10,7 @@ internal class RedditPostResponseDTOMapper @Inject constructor() : DataMapper<Re
         .data.children
         .map {
             RedditPostsModel(
+                it.data.title,
                 it.data.subreddit,
                 it.data.authorFullName,
                 it.data.subredditNamePrefixed,

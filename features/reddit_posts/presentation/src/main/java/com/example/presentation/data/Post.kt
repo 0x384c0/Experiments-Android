@@ -4,7 +4,7 @@ import com.example.presentation.R
 
 data class Post(
     val id: String,
-    val title: String,
+    val title: String?,
     val subtitle: String? = null,
     val url: String,
     val publication: Publication? = null,
@@ -17,7 +17,7 @@ data class Post(
 data class Metadata(
     val author: PostAuthor,
     val date: String,
-    val readTimeMinutes: Int
+    val readTimeMinutes: String
 )
 
 data class PostAuthor(
@@ -74,7 +74,7 @@ val mockPost =  Post(
     metadata = Metadata(
         author = PostAuthor("Jose Alcérreca", "https://medium.com/@JoseAlcerreca"),
         date = "July 09",
-        readTimeMinutes = 1
+        readTimeMinutes = "1"
     ),
     paragraphs = listOf(),
     imageId = R.drawable.ic_jetnews_logo,
