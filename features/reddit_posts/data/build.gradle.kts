@@ -45,5 +45,5 @@ dependencies {
 
     // App
     implementation(project(":common:utils"))
-    implementation(project(":features:reddit_feature:domain"))
+    implementation(project(":features:reddit_posts:domain"))
 }

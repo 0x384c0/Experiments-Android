@@ -76,5 +76,5 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     // App
-    implementation(project(":features:reddit_feature:domain"))
+    implementation(project(":features:reddit_posts:domain"))
 }

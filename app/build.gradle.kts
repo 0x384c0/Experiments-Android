@@ -41,7 +41,7 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     //App Modules
-    implementation(project(":features:reddit_feature:presentation"))
-    implementation(project(":features:reddit_feature:domain"))
-    implementation(project(":features:reddit_feature:data"))
+    implementation(project(":features:reddit_posts:presentation"))
+    implementation(project(":features:reddit_posts:domain"))
+    implementation(project(":features:reddit_posts:data"))
 }
