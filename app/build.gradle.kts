@@ -39,5 +39,9 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    //App Modules
     implementation(project(":features:reddit_feature:presentation"))
+    implementation(project(":features:reddit_feature:domain"))
+    implementation(project(":features:reddit_feature:data"))
 }

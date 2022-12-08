@@ -1,10 +1,11 @@
 package com.example.data.mapper
 
 import com.example.data.entity.RedditPostResponseDTO
-import com.example.data.repository.DataMapper
-import com.example.data.repository.RedditPostsModel
+import com.example.utils.DataMapper
+import com.example.domain.model.RedditPostsModel
+import javax.inject.Inject
 
-internal class RedditPostResponseDTOMapper : DataMapper<RedditPostResponseDTO, List<RedditPostsModel>> {
+internal class RedditPostResponseDTOMapper @Inject constructor() : DataMapper<RedditPostResponseDTO, List<RedditPostsModel>> {
     override fun map(input: RedditPostResponseDTO): List<RedditPostsModel> = input
         .data.children
         .map {

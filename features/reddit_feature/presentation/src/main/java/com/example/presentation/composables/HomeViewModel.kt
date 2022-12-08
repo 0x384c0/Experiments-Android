@@ -1,6 +1,7 @@
 package com.example.presentation.composables
 
 import androidx.lifecycle.MutableLiveData
+import com.example.domain.usecase.RedditPostsInteractor
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,7 +11,10 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-internal class HomeViewModel @Inject constructor(private val interactor: TMPInteractor) : BaseViewModel() {
+internal class HomeViewModel @Inject constructor(
+    private val redditPostsInteractor: RedditPostsInteractor,
+    private val interactor: TMPInteractor
+    ) : BaseViewModel() {
     // region UI Binding
     val state = MutableLiveData(HomeViewState("No state")).asNonMutable()
     // endregion

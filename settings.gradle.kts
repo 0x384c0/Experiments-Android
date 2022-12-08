@@ -15,6 +15,7 @@ dependencyResolutionManagement {
 rootProject.name = "Experiments-Android"
 include(":app")
 
+include(":common:utils")
 include(":features:reddit_feature:presentation")
 include(":features:reddit_feature:domain")
 include(":features:reddit_feature:data")

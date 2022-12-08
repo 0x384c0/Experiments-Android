@@ -126,11 +126,11 @@ internal fun Home(vm: HomeViewModel = hiltViewModel()) {
 //    }
 }
 
-@Preview("Home")
-@Composable
-internal fun HomePreview() {
-    AppTheme { Home(HomeViewModel(TMPInteractorImpl())) }
-}
+//@Preview("Home")
+//@Composable
+//internal fun HomePreview() {
+//    AppTheme { Home(HomeViewModel(TMPInteractorImpl())) }
+//}
 
 
 /**
