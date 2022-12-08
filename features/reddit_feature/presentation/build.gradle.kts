@@ -1,8 +1,8 @@
 plugins {
-    id("org.jetbrains.kotlin.kapt")
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.dagger.hilt.android")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -74,4 +74,7 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
+
+    // App
+    implementation(project(":features:reddit_feature:domain"))
 }

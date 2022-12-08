@@ -1,26 +1,26 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
 
 android {
+    namespace = "com.example.data"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.experiments_android"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
-        release {
+        all {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            buildConfigField("String", "BASE_URL", "\"https://www.reddit.com/\"")
         }
     }
     compileOptions {
@@ -34,10 +34,15 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+
+    // Networking
+    implementation(libs.squareup.retrofit)
+    implementation(libs.squareup.gson)
 
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-    implementation(project(":features:reddit_feature:presentation"))
+
+    // App
+    implementation(project(":features:reddit_feature:domain"))
 }

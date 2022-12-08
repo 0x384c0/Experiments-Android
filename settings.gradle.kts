@@ -14,7 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Experiments-Android"
 include(":app")
-include("app", "core")
 
-include(":presentation")
-project(":presentation").projectDir = File(rootDir, "layers/presentation/")
+include(":features:reddit_feature:presentation")
+include(":features:reddit_feature:domain")
+include(":features:reddit_feature:data")
