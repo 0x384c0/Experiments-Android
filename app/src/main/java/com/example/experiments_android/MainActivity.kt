@@ -3,7 +3,7 @@ package com.example.experiments_android
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ui.activities.RootActivity
+import com.example.presentation.activities.RootActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

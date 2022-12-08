@@ -16,5 +16,5 @@ rootProject.name = "Experiments-Android"
 include(":app")
 include("app", "core")
 
-include(":ui")
-project(":ui").projectDir = File(rootDir, "layers/ui/")
+include(":presentation")
+project(":presentation").projectDir = File(rootDir, "layers/presentation/")
