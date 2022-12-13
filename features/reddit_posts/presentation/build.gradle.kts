@@ -70,6 +70,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewModelCompose)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
+    //UI Libs
+    implementation(libs.coil.kt.compose)
+
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)

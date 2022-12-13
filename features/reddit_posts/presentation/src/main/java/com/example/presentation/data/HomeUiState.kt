@@ -1,9 +1,4 @@
-package com.example.presentation.composables
-
-import com.example.presentation.data.ErrorMessage
-import com.example.presentation.data.Post
-import com.example.presentation.data.PostsFeed
-
+package com.example.presentation.data
 
 /**
  * UI state for the Home route.
@@ -11,7 +6,7 @@ import com.example.presentation.data.PostsFeed
  * This is derived from [HomeViewModelState], but split into two possible subclasses to more
  * precisely represent the state available to render the UI.
  */
-sealed interface HomeUiState {
+internal sealed interface HomeUiState {
 
     val isLoading: Boolean
     val errorMessages: List<ErrorMessage>
@@ -31,14 +26,9 @@ sealed interface HomeUiState {
 
     /**
      * There are posts to render, as contained in [postsFeed].
-     *
-     * There is guaranteed to be a [selectedPost], which is one of the posts from [postsFeed].
      */
     data class HasPosts(
-        val postsFeed: PostsFeed,
-        val selectedPost: Post,
-        val isArticleOpen: Boolean,
-        val favorites: Set<String>,
+        val posts: List<PostItemState>,
         override val isLoading: Boolean,
         override val errorMessages: List<ErrorMessage>,
         override val searchInput: String

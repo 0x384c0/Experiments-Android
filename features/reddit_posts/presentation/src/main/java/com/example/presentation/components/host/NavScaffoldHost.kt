@@ -1,4 +1,4 @@
-package com.example.presentation.composables
+package com.example.presentation.components.host
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons

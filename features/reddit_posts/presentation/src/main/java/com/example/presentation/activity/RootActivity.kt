@@ -1,11 +1,11 @@
-package com.example.presentation.activities
+package com.example.presentation.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.presentation.composables.App
+import com.example.presentation.components.host.App
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.example.presentation.views.progress
+package com.example.presentation.view.progress
 
 import android.content.Context
 import android.graphics.*

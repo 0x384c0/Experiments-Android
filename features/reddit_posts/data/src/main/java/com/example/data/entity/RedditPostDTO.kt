@@ -19,8 +19,8 @@ data class RedditPostDataDTO(
     val title:String?,
      @SerializedName("subreddit")
      val subreddit:String?,
-     @SerializedName("author_fullname")
-     val authorFullName:String?,
+     @SerializedName("author")
+     val author:String?,
      @SerializedName("subreddit_name_prefixed")
      val subredditNamePrefixed:String?,
      @SerializedName("thumbnail_height")

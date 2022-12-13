@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center">
 
-                    <com.example.presentation.views.progress.AngleOffsetProgressView
+                    <com.example.presentation.view.progress.AngleOffsetProgressView
                         android:id="@+id/viewAngleProgress"
                         android:layout_width="254dp"
                         android:layout_height="254dp" />
@@ -76,7 +76,7 @@
                             android:textColor="#000"
                             android:text="@string/progress_bars" />
 
-                        <com.example.presentation.views.progress.ExpandableProgressView
+                        <com.example.presentation.view.progress.ExpandableProgressView
                             android:id="@+id/loanProgressView"
                             android:layout_width="match_parent"
                             android:layout_height="125dp"
@@ -120,13 +120,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <com.example.presentation.views.progress.MultiProgressView
+                        <com.example.presentation.view.progress.MultiProgressView
                             android:id="@+id/multiProgressView"
                             android:layout_width="match_parent"
                             android:layout_height="16dp"
                             android:layout_margin="@dimen/margin_small" />
 
-                        <com.example.presentation.views.progress.SquareMultiProgressView
+                        <com.example.presentation.view.progress.SquareMultiProgressView
                             android:id="@+id/squareMultiProgressView"
                             android:layout_width="match_parent"
                             android:layout_height="16dp"

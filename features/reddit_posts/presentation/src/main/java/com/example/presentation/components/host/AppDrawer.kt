@@ -1,4 +1,4 @@
-package com.example.presentation.composables
+package com.example.presentation.components.host
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -9,6 +9,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.presentation.components.NavDrawer
+import com.example.presentation.components.screen.AnimationsDemoScreen
+import com.example.presentation.components.screen.HomeScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -36,8 +39,8 @@ internal fun AppDrawer(
             topBarClick = { coroutineScope.launch { drawerState.open() } },
             builder = {
                 //TODO: nav routes to separate class
-                composable(ROUTE_HOME) { Home() }
-                composable(ROUTE_ANIMATIONS) { AnimationsDemo() }
+                composable(ROUTE_HOME) { HomeScreen() }
+                composable(ROUTE_ANIMATIONS) { AnimationsDemoScreen() }
             }
         )
     }

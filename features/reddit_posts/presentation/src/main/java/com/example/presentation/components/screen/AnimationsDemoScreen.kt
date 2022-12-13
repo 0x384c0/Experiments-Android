@@ -1,4 +1,4 @@
-package com.example.presentation.composables
+package com.example.presentation.components.screen
 
 import android.graphics.Color
 import android.view.ViewGroup
@@ -9,11 +9,11 @@ import androidx.core.graphics.ColorUtils
 import androidx.core.view.children
 import androidx.core.view.marginBottom
 import com.example.presentation.databinding.FragmentDebugAnimationsBinding
-import com.example.presentation.views.progress.MultiProgressView
+import com.example.presentation.view.progress.MultiProgressView
 
 
 @Composable
-fun AnimationsDemo() {
+fun AnimationsDemoScreen() {
     AndroidViewBinding(FragmentDebugAnimationsBinding::inflate) {
         val binding = this
         //region Curves animation

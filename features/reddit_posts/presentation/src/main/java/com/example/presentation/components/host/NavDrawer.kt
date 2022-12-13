@@ -1,4 +1,4 @@
-package com.example.presentation.composables
+package com.example.presentation.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height

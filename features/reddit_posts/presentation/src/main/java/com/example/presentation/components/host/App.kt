@@ -1,4 +1,4 @@
-package com.example.presentation.composables
+package com.example.presentation.components.host
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
