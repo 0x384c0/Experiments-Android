@@ -16,7 +16,7 @@ rootProject.name = "Experiments-Android"
 //App
 include(":app")
 //Misc
-include(":common:utils")
+include(":common:util")
 //Host
 include(":features:features_host:presentation")
 //Animations Demo

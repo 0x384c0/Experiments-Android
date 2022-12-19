@@ -9,7 +9,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.core.view.children
 import androidx.core.view.marginBottom
 import com.example.animations_demo.presentation.databinding.FragmentDebugAnimationsBinding
-import com.example.animations_demo.presentation.view.MultiProgressView
+import com.example.animations_demo.presentation.views.MultiProgressView
 
 
 @Composable

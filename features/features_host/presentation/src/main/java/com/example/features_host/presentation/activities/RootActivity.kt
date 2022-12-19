@@ -1,4 +1,4 @@
-package com.example.features_host.presentation.activity
+package com.example.features_host.presentation.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

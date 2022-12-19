@@ -2,7 +2,6 @@ package com.example.presentation.mapper
 
 import android.net.Uri
 import com.example.domain.model.RedditPostsModel
-import com.example.presentation.R
 import com.example.presentation.data.HomeUiState
 import com.example.presentation.data.PostItemState
 import com.example.utils.DataMapper

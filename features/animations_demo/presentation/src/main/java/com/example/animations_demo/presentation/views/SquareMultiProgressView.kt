@@ -1,4 +1,4 @@
-package com.example.animations_demo.presentation.view
+package com.example.animations_demo.presentation.views
 
 import android.content.Context
 import android.graphics.Canvas

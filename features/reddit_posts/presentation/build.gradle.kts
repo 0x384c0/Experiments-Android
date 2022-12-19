@@ -69,8 +69,8 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
+    implementation(project(":common:util"))
 
     // App
-    implementation(project(":common:utils"))
     implementation(project(":features:reddit_posts:domain"))
 }
