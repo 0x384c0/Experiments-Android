@@ -1,4 +1,4 @@
-package com.example.presentation.components.item
+package com.example.presentation.components.items
 
 import android.net.Uri
 import androidx.compose.foundation.Image

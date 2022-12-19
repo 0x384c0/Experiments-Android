@@ -1,4 +1,4 @@
-package com.example.presentation.components.screen
+package com.example.presentation.components.screens
 
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -11,7 +11,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.presentation.components.item.PostItem
+import com.example.presentation.components.items.PostItem
 import com.example.presentation.data.HomeUiState
 import com.example.presentation.mapper.RedditPostsModelsMapper
 import com.example.presentation.mock.MockRedditPostsInteractor

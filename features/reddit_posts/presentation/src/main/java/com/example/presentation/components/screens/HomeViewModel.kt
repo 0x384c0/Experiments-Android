@@ -1,4 +1,4 @@
-package com.example.presentation.components.screen
+package com.example.presentation.components.screens
 
 import androidx.lifecycle.MutableLiveData
 import com.example.domain.usecase.RedditPostsInteractor
