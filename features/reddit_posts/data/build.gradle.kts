@@ -44,6 +44,9 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(project(":common:util"))
 
+    //Tests
+    testImplementation(libs.junit)
+
     // App
     implementation(project(":features:reddit_posts:domain"))
 }

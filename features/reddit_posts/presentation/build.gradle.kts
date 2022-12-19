@@ -71,6 +71,12 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(project(":common:util"))
 
+    //Tests
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.compose.ui.test)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+
     // App
     implementation(project(":features:reddit_posts:domain"))
 }
