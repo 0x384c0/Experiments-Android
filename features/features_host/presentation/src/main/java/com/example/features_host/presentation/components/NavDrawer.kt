@@ -1,8 +1,13 @@
-package com.example.presentation.components
+@file:OptIn(ExperimentalMaterial3Api::class)
+
+package com.example.features_host.presentation.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -16,23 +21,23 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NavDrawer(
-    drawerItems: List<Pair<String, ImageVector>>,
+fun AppDrawer(
+    drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
     coroutineScope: CoroutineScope,
-    navController: NavHostController,
+    drawerItems: List<Pair<String, ImageVector>>,
+    onItemClick: (String) -> Unit,
     content: @Composable (name: String, drawerState: DrawerState) -> Unit
 ) {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
     val selectedItem = remember { mutableStateOf(drawerItems.map { it.second }[0]) }
 
     ModalNavigationDrawer(
@@ -48,7 +53,7 @@ fun NavDrawer(
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
                             selectedItem.value = item.second
-                            navController.navigate(item.first)
+                            onItemClick(item.first)
                         },
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                     )
@@ -56,5 +61,20 @@ fun NavDrawer(
             }
         },
         content = { content(selectedItem.value.name, drawerState) }
+    )
+}
+
+@Preview
+@Composable
+private fun ComposablePreview() {
+    AppDrawer(
+        drawerState = rememberDrawerState(DrawerValue.Open),
+        coroutineScope = rememberCoroutineScope(),
+        drawerItems = listOf(
+            "1" to Icons.Default.Home,
+            "2" to Icons.Default.PlayArrow
+        ),
+        onItemClick = {},
+        content = { _, _ -> Text(text = "Test content") }
     )
 }

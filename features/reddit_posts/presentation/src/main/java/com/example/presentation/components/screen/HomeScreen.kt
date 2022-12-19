@@ -10,7 +10,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.presentation.components.host.AppTheme
 import com.example.presentation.components.item.PostItem
 import com.example.presentation.data.HomeUiState
 import com.example.presentation.mapper.RedditPostsModelsMapper
@@ -39,12 +38,10 @@ internal fun HomeScreen(vm: HomeViewModel = hiltViewModel(),
 @Preview
 @Composable
 internal fun HomePreview() {
-    AppTheme {
-        HomeScreen(HomeViewModel(
-            redditPostsInteractor = MockRedditPostsInteractor(),
-            redditPostsModelsMapper = RedditPostsModelsMapper()
-        ))
-    }
+    HomeScreen(HomeViewModel(
+        redditPostsInteractor = MockRedditPostsInteractor(),
+        redditPostsModelsMapper = RedditPostsModelsMapper()
+    ))
 }
 
 /**
@@ -74,4 +71,11 @@ private fun PostsFeedScreen(
             }
         },
     )
+}
+
+class RedditPostsNavigation{
+    @Composable
+    fun entryPoint() {
+        HomeScreen()
+    }
 }
