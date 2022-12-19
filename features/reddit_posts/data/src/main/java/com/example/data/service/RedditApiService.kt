@@ -1,7 +1,6 @@
 package com.example.data.service
 
 import com.example.data.entity.RedditPostResponseDTO
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
 

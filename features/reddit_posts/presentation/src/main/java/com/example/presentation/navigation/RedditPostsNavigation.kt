@@ -5,7 +5,7 @@ import com.example.presentation.components.screen.HomeScreen
 
 class RedditPostsNavigation{
     @Composable
-    fun entryPoint() {
+    fun EntryPoint() {
         HomeScreen()
     }
 }

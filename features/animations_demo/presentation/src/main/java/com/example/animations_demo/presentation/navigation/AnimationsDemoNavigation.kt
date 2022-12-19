@@ -5,7 +5,7 @@ import com.example.animations_demo.presentation.component.AnimationsDemoScreen
 
 class AnimationsDemoNavigation {
     @Composable
-    fun entryPoint() {
+    fun EntryPoint() {
         AnimationsDemoScreen()
     }
 }

@@ -90,13 +90,13 @@ class ExpandableProgressView : BaseProgressView {
             90f,
             -359f
         )
-        val cicleLength = getLengthOfPath(p)
+        val circleLength = getLengthOfPath(p)
         p.lineTo(end.x.toFloat(), end.y.toFloat())
         val fullLength = getLengthOfPath(p)
 
 
-        val circlePart = cicleLength / fullLength
-        val linePart = (fullLength - cicleLength) / fullLength
+        val circlePart = circleLength / fullLength
+        val linePart = (fullLength - circleLength) / fullLength
 
         val fullProgressPart = circlePart * endOffset + linePart * (1 - endOffset)
         val endSubPath = 1 - endOffset * linePart

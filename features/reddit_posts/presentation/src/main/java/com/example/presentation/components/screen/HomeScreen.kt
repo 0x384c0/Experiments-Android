@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,10 +30,12 @@ internal fun HomeScreen(vm: HomeViewModel = hiltViewModel(),
             onRefreshPosts = { composableScope.launch { vm.refresh() } },
             onErrorDismiss = {},
             homeListLazyListState = rememberLazyListState(),
-            snackbarHostState = SnackbarHostState(),
+            snackBarHostState = SnackbarHostState(),
         )
     }
-    composableScope.launch { vm.refresh() }
+    LaunchedEffect(composableScope){
+        launch { vm.refresh() }
+    }
 }
 
 @Preview
@@ -54,7 +57,7 @@ private fun PostsFeedScreen(
     onRefreshPosts: () -> Unit,
     onErrorDismiss: (Long) -> Unit,
     homeListLazyListState: LazyListState,
-    snackbarHostState: SnackbarHostState,
+    snackBarHostState: SnackbarHostState,
 ) {
     SwipeRefresh(
         state = rememberSwipeRefreshState(false),

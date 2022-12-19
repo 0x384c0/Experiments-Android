@@ -52,8 +52,8 @@ internal fun App(
                     navController = navController,
                     startDestination = ROUTE_REDDIT_POSTS,
                     builder = { //TODO: nav graph in to separate class
-                        composable(ROUTE_REDDIT_POSTS) { redditPostsNavigation.entryPoint() }
-                        composable(ROUTE_ANIMATIONS) { animationsDemoNavigation.entryPoint() }
+                        composable(ROUTE_REDDIT_POSTS) { redditPostsNavigation.EntryPoint() }
+                        composable(ROUTE_ANIMATIONS) { animationsDemoNavigation.EntryPoint() }
                     }
                 )
             }

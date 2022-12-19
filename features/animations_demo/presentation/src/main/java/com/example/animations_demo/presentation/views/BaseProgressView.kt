@@ -53,7 +53,7 @@ abstract class BaseProgressView : View {
         return dp * context.resources.displayMetrics.density
     }
 
-    protected fun clamp(value: Float): Float {
+    private fun clamp(value: Float): Float {
         return when {
             value < 0f -> 0f
             value > 1f -> 1f

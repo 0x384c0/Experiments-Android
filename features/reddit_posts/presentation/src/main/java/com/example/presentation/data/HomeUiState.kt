@@ -2,9 +2,6 @@ package com.example.presentation.data
 
 /**
  * UI state for the Home route.
- *
- * This is derived from [HomeViewModelState], but split into two possible subclasses to more
- * precisely represent the state available to render the UI.
  */
 internal sealed interface HomeUiState {
 
@@ -25,7 +22,7 @@ internal sealed interface HomeUiState {
     ) : HomeUiState
 
     /**
-     * There are posts to render, as contained in [postsFeed].
+     * There are posts to render, as contained in [posts].
      */
     data class HasPosts(
         val posts: List<PostItemState>,

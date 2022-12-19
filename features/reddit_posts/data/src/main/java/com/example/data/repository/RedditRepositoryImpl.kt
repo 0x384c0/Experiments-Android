@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 internal class RedditRepositoryImpl @Inject constructor(
     private val api: RedditApiService,
-    private val redditPostResponseDTOMapper: com.example.utils.DataMapper<RedditPostResponseDTO, List<RedditPostsModel>>,
-    private val redditPostSortModelMapper: com.example.utils.DataMapper<RedditPostSortModel, String>
+    private val redditPostResponseDTOMapper: DataMapper<RedditPostResponseDTO, List<RedditPostsModel>>,
+    private val redditPostSortModelMapper: DataMapper<RedditPostSortModel, String>
 ) : RedditRepository {
     override suspend fun getPosts(
         subreddit: String,
