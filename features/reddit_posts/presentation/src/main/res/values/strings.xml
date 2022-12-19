@@ -1,9 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="progress_bars" tools:ignore="ExtraTranslation">Progress bars</string>
-    <string name="card_animation" tools:ignore="ExtraTranslation">Card animation</string>
-    <string name="title_activity_root">RootActivity</string>
-
+<resources>
     <string name="app_name">Jetnews</string>
     <string name="load_error">Can\'t update latest news</string>
     <string name="retry">Retry</string>

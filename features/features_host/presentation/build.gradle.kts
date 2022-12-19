@@ -56,10 +56,8 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation(libs.androidx.compose.ui.tooling)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.iconsExtended)
-
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.navigation.compose)
     debugImplementation(libs.androidx.compose.ui.tooling)
@@ -71,4 +69,5 @@ dependencies {
 
     //App
     implementation(project(":features:reddit_posts:presentation"))
+    implementation(project(":features:animations_demo:presentation"))
 }

@@ -1,9 +1,11 @@
-package com.example.presentation.view.progress
+package com.example.animations_demo.presentation.view
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.RectF
 import android.util.AttributeSet
-
 
 class SquareMultiProgressView : MultiProgressView {
     constructor(context: Context) : super(context)

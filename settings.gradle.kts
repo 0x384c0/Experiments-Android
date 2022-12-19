@@ -19,6 +19,8 @@ include(":app")
 include(":common:utils")
 //Host
 include(":features:features_host:presentation")
+//Animations Demo
+include(":features:animations_demo:presentation")
 //Reddit
 include(":features:reddit_posts:presentation")
 include(":features:reddit_posts:domain")

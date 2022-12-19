@@ -1,4 +1,4 @@
-package com.example.presentation.components.screen
+package com.example.animations_demo.presentation.component
 
 import android.graphics.Color
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.children
 import androidx.core.view.marginBottom
-import com.example.presentation.databinding.FragmentDebugAnimationsBinding
-import com.example.presentation.view.progress.MultiProgressView
+import com.example.animations_demo.presentation.databinding.FragmentDebugAnimationsBinding
+import com.example.animations_demo.presentation.view.MultiProgressView
 
 
 @Composable

@@ -73,9 +73,3 @@ private fun PostsFeedScreen(
     )
 }
 
-class RedditPostsNavigation{
-    @Composable
-    fun entryPoint() {
-        HomeScreen()
-    }
-}

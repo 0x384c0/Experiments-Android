@@ -16,9 +16,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.animations_demo.presentation.navigation.AnimationsDemoNavigation
 import com.example.features_host.presentation.theme.ExperimentsAndroidTheme
-import com.example.presentation.components.screen.AnimationsDemoScreen
-import com.example.presentation.components.screen.RedditPostsNavigation
+import com.example.presentation.navigation.RedditPostsNavigation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -33,6 +33,7 @@ internal fun App(
     navController: NavHostController = rememberNavController(),
 ) {
     val redditPostsNavigation = remember { RedditPostsNavigation() }
+    val animationsDemoNavigation = remember { AnimationsDemoNavigation() }
     AppTheme {
         AppDrawer(
             coroutineScope = coroutineScope,
@@ -52,7 +53,7 @@ internal fun App(
                     startDestination = ROUTE_REDDIT_POSTS,
                     builder = { //TODO: nav graph in to separate class
                         composable(ROUTE_REDDIT_POSTS) { redditPostsNavigation.entryPoint() }
-                        composable(ROUTE_ANIMATIONS) { AnimationsDemoScreen() }
+                        composable(ROUTE_ANIMATIONS) { animationsDemoNavigation.entryPoint() }
                     }
                 )
             }

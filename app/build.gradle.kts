@@ -40,7 +40,7 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
-    //App Modules
+    //Hilt App Modules
     implementation(project(":features:reddit_posts:presentation"))
     implementation(project(":features:reddit_posts:domain"))
     implementation(project(":features:reddit_posts:data"))

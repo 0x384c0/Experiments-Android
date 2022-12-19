@@ -2,10 +2,10 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
+    namespace = "com.example.animations_demo.presentation"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
@@ -50,27 +50,17 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
 
+    // Legacy
+    implementation(libs.google.android.material)
+
     // Compose
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.runtime.livedata)
-    implementation(libs.androidx.lifecycle.viewModelCompose)
-    implementation(libs.androidx.compose.material.iconsExtended)
-    implementation(libs.accompanist.swiperefresh)
+    implementation(libs.androidx.compose.ui.viewbinding)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     //UI Libs
     implementation(libs.coil.kt.compose)
-
-    // Hilt
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.navigation.compose)
-    kapt(libs.hilt.compiler)
-
-    // App
-    implementation(project(":common:utils"))
-    implementation(project(":features:reddit_posts:domain"))
 }

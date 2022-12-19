@@ -1,11 +1,12 @@
-package com.example.presentation.view.progress
+package com.example.animations_demo.presentation.view
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Path
+import android.graphics.PathMeasure
+import android.graphics.Point
 import android.util.AttributeSet
 import android.view.View
 import kotlin.math.roundToInt
-
 
 abstract class BaseProgressView : View {
     constructor(context: Context) : super(context)
