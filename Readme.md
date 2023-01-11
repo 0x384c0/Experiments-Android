@@ -1,27 +1,29 @@
-![tests workflow](https://github.com/0x384c0/Experiments-Android/actions/workflows/tests.yml/badge.svg)
+[![github action](https://github.com/0x384c0/Experiments-Android/actions/workflows/tests.yml/badge.svg)](https://github.com/0x384c0/Experiments-Android/actions/workflows/tests.yml)
 ### Description
-A sample darwin app that shows recent posts from internet forum.
+A sample Android app that shows recent posts from internet forum.
+
+<img src="/media/screenshot.jpg" height="300">
+
 ### Project Structure
 Project structure was generated using [ChatGPT](https://chat.openai.com/chat)
 ```
-app
-  features
-    feature_name
-      data
-        entity - models, used in data layer
-        mapper - maps data between domain and data
-        repository - wrapper for API or database
-        service - API implementation
-      domain - contains the core business logic of the app
-        model - models, used in domain layer
-        repository - wrapper for accessing data
-        usecase - business logic omplementation
-      presentation - contains the code that adapts the domain layer to the Android framework
-        components - App views
-        data - models, used in ui layer
-        mapper - maps data between domain and presentation
-        navigation - controls transitions between screens
-
+app - android app, that hosts all features
+features - all app features
+  feature_name - example of single feature
+    data - module, that retrieves and stores data from the app's data sources
+      entity - models, used in data layer
+      mapper - maps data between domain and data
+      repository - wrapper for API or database
+      service - API implementation
+    domain - module, that contains the core business logic of the app
+      model - models, used in domain layer
+      repository - wrapper for accessing data
+      usecase - business logic omplementation
+    presentation - module, that contains the code that adapts the domain layer to the Android framework
+      components - App views
+      data - models, used in ui layer
+      mapper - maps data between domain and presentation
+      navigation - controls transitions between screens
 ```
 ### Modules
 App has multiple [features](/features)
