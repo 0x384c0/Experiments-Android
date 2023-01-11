@@ -17,7 +17,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.animations_demo.presentation.navigation.AnimationsDemoNavigation
+import com.example.features_host.presentation.R
 import com.example.features_host.presentation.theme.ExperimentsAndroidTheme
+import com.example.presentation.data.DrawerItemState
 import com.example.presentation.navigation.RedditPostsNavigation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -38,8 +40,16 @@ internal fun App(
         AppDrawer(
             coroutineScope = coroutineScope,
             drawerItems = listOf(
-                ROUTE_REDDIT_POSTS to Icons.Default.Home,
-                ROUTE_ANIMATIONS to Icons.Default.PlayArrow
+                DrawerItemState(
+                    Icons.Default.Home,
+                    R.string.drawer_home,
+                    ROUTE_REDDIT_POSTS,
+                ),
+                DrawerItemState(
+                    Icons.Default.PlayArrow,
+                    R.string.drawer_animations,
+                    ROUTE_ANIMATIONS,
+                )
             ),
             onItemClick = { navController.navigate(it) { launchSingleTop = true } },
         ) { name, drawerState ->

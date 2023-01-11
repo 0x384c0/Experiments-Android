@@ -23,9 +23,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.features_host.presentation.R
+import com.example.presentation.data.DrawerItemState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -34,11 +36,11 @@ import kotlinx.coroutines.launch
 fun AppDrawer(
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
     coroutineScope: CoroutineScope,
-    drawerItems: List<Pair<String, ImageVector>>,
+    drawerItems: List<DrawerItemState>,
     onItemClick: (String) -> Unit,
     content: @Composable (name: String, drawerState: DrawerState) -> Unit
 ) {
-    val selectedItem = remember { mutableStateOf(drawerItems.map { it.second }[0]) }
+    val selectedItem = remember { mutableStateOf(drawerItems.map { it }[0]) }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -47,20 +49,20 @@ fun AppDrawer(
                 Spacer(Modifier.height(12.dp))
                 drawerItems.forEach { item ->
                     NavigationDrawerItem(
-                        icon = { Icon(item.second, contentDescription = null) },
-                        label = { Text(item.second.name) },
-                        selected = item.second == selectedItem.value,
+                        icon = { Icon(item.icon, contentDescription = null) },
+                        label = { Text(stringResource(id = item.label)) },
+                        selected = item == selectedItem.value,
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
-                            selectedItem.value = item.second
-                            onItemClick(item.first)
+                            selectedItem.value = item
+                            onItemClick(item.route)
                         },
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                     )
                 }
             }
         },
-        content = { content(selectedItem.value.name, drawerState) }
+        content = { content(stringResource(id = selectedItem.value.label), drawerState) }
     )
 }
 
@@ -71,8 +73,16 @@ private fun ComposablePreview() {
         drawerState = rememberDrawerState(DrawerValue.Open),
         coroutineScope = rememberCoroutineScope(),
         drawerItems = listOf(
-            "1" to Icons.Default.Home,
-            "2" to Icons.Default.PlayArrow
+            DrawerItemState(
+                Icons.Default.Home,
+                R.string.drawer_home,
+                "",
+            ),
+            DrawerItemState(
+                Icons.Default.PlayArrow,
+                R.string.drawer_animations,
+                "",
+            )
         ),
         onItemClick = {},
         content = { _, _ -> Text(text = "Test content") }
