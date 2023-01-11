@@ -5,7 +5,10 @@ import com.example.presentation.data.HomeUiState
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
+@RunWith(RobolectricTestRunner::class)
 internal class RedditPostsModelsMapperTest {
     private lateinit var sut: RedditPostsModelsMapper
 
