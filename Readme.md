@@ -1,91 +1,49 @@
+![tests workflow](https://github.com/0x384c0/Experiments-Android/actions/workflows/tests.yml/badge.svg)
+### Description
+A sample darwin app that shows recent posts from internet forum.
+### Project Structure
 Project structure was generated using [ChatGPT](https://chat.openai.com/chat)
-
-Prompt 
 ```
-write a project stricture with only folders of android app, written using clean architeure approaches from uncle bob
+app
+  features
+    feature_name
+      data
+        entity - models, used in data layer
+        mapper - maps data between domain and data
+        repository - wrapper for API or database
+        service - API implementation
+      domain - contains the core business logic of the app
+        model - models, used in domain layer
+        repository - wrapper for accessing data
+        usecase - business logic omplementation
+      presentation - contains the code that adapts the domain layer to the Android framework
+        components - App views
+        data - models, used in ui layer
+        mapper - maps data between domain and presentation
+        navigation - controls transitions between screens
+
 ```
-Answer
-```
-my-app/
-  app/
-    src/
-      androidTest/
-        java/
-          com.example.myapp/
-      main/
-        java/
-          com.example.myapp/
-        res/
-          drawable/
-          layout/
-          values/
-          AndroidManifest.xml
-      test/
-        java/
-          com.example.myapp/
-    build.gradle
-  domain/
-    src/
-      main/
-        java/
-          com.example.myapp.domain/
-            model/
-            repository/
-            usecase/
-        test/
-          java/
-            com.example.myapp.domain/
-              model/
-              repository/
-              usecase/
-    build.gradle
-  presentation/
-    src/
-      main/
-        java/
-          com.example.myapp.presentation/
-            model/
-            presenter/
-            view/
-        res/
-          layout/
-          values/
-        test/
-          java/
-            com.example.myapp.presentation/
-              model/
-              presenter/
-              view/
-    build.gradle
-  data/
-    src/
-      main/
-        java/
-          com.example.myapp.data/
-            entity/
-            mapper/
-            repository/
-            service/
-        test/
-          java/
-            com.example.myapp.data/
-              entity/
-              mapper/
-              repository/
-              service/
-    build.gradle
-  build.gradle
-  settings.gradle
-```
+### Modules
+App has multiple [features](/features)
+Each feature split in to 3 modules
+1. [presentation](/features/reddit_posts/presentation/) - contains Android Presentation Layer
+1. [domain](/features/reddit_posts/domain/) - contains Domain layer with business logic
+1. [data](/features/reddit_posts/data/) - contains Data layer with REST API requests
 
-This project structure separates the different layers of the app into different modules: app, domain, presentation, and data.
-
-The app module contains the Android-specific code, such as the MainActivity and the app's resources, such as layouts, strings, and styles.
-
-The domain module contains the core business logic of the app, such as the User model and the GetUsers use case. This module is independent of the Android framework and can be tested without an Android device or emulator.
-
-The presentation module contains the code that adapts the domain layer to the Android framework, such as the UserView and the UserPresenter. This module depends on the domain module but is independent of the data layer.
-
-The data module contains the code that retrieves and stores data from the app's data sources, such as a remote API or a local database. This module depends on the domain module and provides an implementation of the repositories defined in the domain layer.
-
-Each module has a separate build.gradle file that defines the dependencies for that module. The root build.gradle file defines the overall settings for the project, such as the Android plugin and the target SDK version. The settings.gradle file defines the modules that belong to the project.
+### Communication between layers
+1. [UI](/features/reddit_posts/presentation/src/main/java/com/example/presentation/components/screens/HomeScreen.kt) calls functions from [ViewModel](/features/reddit_posts/presentation/src/main/java/com/example/presentation/components/screens/HomeViewModel.kt).
+1. ViewModel executes Use cases from [Interactor](/features/reddit_posts/domain/src/main/java/com/example/domain/usecase/RedditPostsInteractorImpl.kt).
+1. Use case obtains data from [Repository](/features/reddit_posts/data/src/main/java/com/example/data/repository/RedditRepositoryImpl.kt)
+1. Repository returns data from a [Api](/features/reddit_posts/data/src/main/java/com/example/data/service/RedditApiService.kt).
+1. Information flows back to the UI to be displayed.
+### Test coverage
+1. [data](/features/reddit_posts/data/src/test/java/com/example/data/mapper/)
+1. [domain](/features/reddit_posts/domain/src/test/java/com/example/domain/)
+1. [presentation](/features/reddit_posts/presentation/src/test/java/com/example/presentation/mapper/)
+1. [ui](/features/reddit_posts/presentation/src/androidTest/java/com/example/presentation/components/screens/)
+### Used Tecnologies
+1. [Jetpack Compose](https://developer.android.com/jetpack/compose)
+1. [Coroutines](https://kotlinlang.org/docs/coroutines-overview.htm)
+1. [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+1. [Retrofit](https://square.github.io/retrofit/)
+1. [Gradle Kotlin DSL ](https://docs.gradle.org/current/userguide/kotlin_dsl.html)
