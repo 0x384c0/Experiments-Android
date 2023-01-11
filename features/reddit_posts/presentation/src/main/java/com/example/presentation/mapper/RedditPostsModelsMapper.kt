@@ -9,19 +9,27 @@ import javax.inject.Inject
 
 internal class RedditPostsModelsMapper @Inject constructor() : DataMapper<List<RedditPostsModel>, HomeUiState> {
     override fun map(input: List<RedditPostsModel>): HomeUiState {
-        val posts = input.map {
+        val posts = input.map { it ->
             PostItemState(
                 author = it.author ?: "",
                 category = it.subredditNamePrefixed ?: "",
-                icon = Uri.parse(it.thumbnail),
+                icon = it.thumbnail?.let { Uri.parse(it) } ?: Uri.EMPTY,
                 title = it.title ?: "",
             )
         }
-        return HomeUiState.HasPosts(
-            posts = posts,
-            isLoading = false,
-            errorMessages = emptyList(),
-            searchInput = ""
-        )
+        return if (posts.isEmpty()) {
+            HomeUiState.NoPosts(
+                isLoading = false,
+                errorMessages = emptyList(),
+                searchInput = ""
+            )
+        } else {
+            HomeUiState.HasPosts(
+                posts = posts,
+                isLoading = false,
+                errorMessages = emptyList(),
+                searchInput = ""
+            )
+        }
     }
 }

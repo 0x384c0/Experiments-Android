@@ -5,24 +5,31 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.presentation.components.items.PostItem
 import com.example.presentation.data.HomeUiState
 import com.example.presentation.mapper.RedditPostsModelsMapper
-import com.example.presentation.mock.MockRedditPostsInteractor
+import com.example.domain.mock.MockRedditPostsInteractor
+import com.example.presentation.R
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-internal fun HomeScreen(vm: HomeViewModel = hiltViewModel(),
-                        composableScope: CoroutineScope = rememberCoroutineScope()) {
+internal fun HomeScreen(
+    vm: HomeViewModel = hiltViewModel(),
+    composableScope: CoroutineScope = rememberCoroutineScope()
+) {
     vm.state.observeAsState().value?.let {
         PostsFeedScreen(
             uiState = it,
@@ -33,7 +40,7 @@ internal fun HomeScreen(vm: HomeViewModel = hiltViewModel(),
             snackBarHostState = SnackbarHostState(),
         )
     }
-    LaunchedEffect(composableScope){
+    LaunchedEffect(composableScope) {
         launch { vm.refresh() }
     }
 }
@@ -62,15 +69,22 @@ private fun PostsFeedScreen(
     SwipeRefresh(
         state = rememberSwipeRefreshState(false),
         onRefresh = onRefreshPosts,
+        modifier = Modifier.testTag("swipeRefresh"),
         content = {
-            if (uiState is HomeUiState.HasPosts) {
-                LazyColumn(
-                    state = homeListLazyListState
-                ) {
-                    items(uiState.posts) { post ->
-                        PostItem(post)
+            when (uiState) {
+                is HomeUiState.HasPosts ->
+                    LazyColumn(
+                        state = homeListLazyListState,
+                        modifier = Modifier.testTag("items"),
+                    ) {
+                        items(uiState.posts) { post ->
+                            PostItem(post)
+                        }
                     }
-                }
+                is HomeUiState.NoPosts -> Text(
+                    text = stringResource(id = R.string.no_data),
+                    modifier = Modifier.testTag("no_items"),
+                )
             }
         },
     )

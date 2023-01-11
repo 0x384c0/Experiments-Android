@@ -69,14 +69,13 @@ dependencies {
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
-    implementation(project(":common:util"))
 
     //Tests
     testImplementation(libs.junit)
-    androidTestImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.compose.ui.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     // App
+    implementation(project(":common:util"))
     implementation(project(":features:reddit_posts:domain"))
 }
