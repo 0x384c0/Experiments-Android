@@ -6,12 +6,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import com.example.features_host.presentation.navigation.FeatureHostRouter
 import com.example.features_host.presentation.theme.ExperimentsAndroidTheme
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +22,6 @@ internal fun App(
     navController: NavHostController,
     router: FeatureHostRouter,
 ) {
-    //TODO: set navController to hilt
     AppTheme {
         AppDrawer(
             coroutineScope = coroutineScope,
@@ -33,6 +30,8 @@ internal fun App(
         ) { name, drawerState ->
             AppScaffold(
                 title = name,
+                canGoBack = router.canGoBack(),
+                backClick = { router.back() },
                 topBarClick = { coroutineScope.launch { drawerState.open() } },
             ) { padding ->
                 NavHost(

@@ -3,8 +3,11 @@ package com.example.features_host.presentation.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.animations_demo.presentation.navigation.AnimationsDemoRouter
 import com.example.features_host.presentation.R
 import com.example.presentation.data.DrawerItemState
@@ -15,7 +18,7 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 
 
-class FeatureHostRouter @Inject constructor (
+class FeatureHostRouter @Inject constructor(
     private val redditPostsRouter: RedditPostsRouter,
     private val navHostController: NavHostController,
 ) {
@@ -41,13 +44,25 @@ class FeatureHostRouter @Inject constructor (
 
     val startDestination = redditPostsRouter.startDestination
 
+    @Composable
+    fun canGoBack(): Boolean {
+        val state by navHostController.currentBackStackEntryAsState()
+        return drawerItems.map { it.route }.contains(state?.destination?.route).not()
+    }
+
     fun navigate(drawerItem: DrawerItemState) {
         navHostController.navigate(drawerItem.route) { launchSingleTop = true }
+    }
+
+    fun back() {
+        navHostController.popBackStack()
+
+
     }
 
     @EntryPoint
     @InstallIn(SingletonComponent::class)
     interface Factory {
-        fun createRouter() : FeatureHostRouter
+        fun createRouter(): FeatureHostRouter
     }
 }
