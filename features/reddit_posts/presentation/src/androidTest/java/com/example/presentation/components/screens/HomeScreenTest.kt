@@ -11,7 +11,9 @@ import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeDown
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.domain.mock.MockRedditPostsInteractor
+import com.example.presentation.mapper.PostItemStateMapper
 import com.example.presentation.mapper.RedditPostsModelsMapper
+import com.example.presentation.navigation.MockRedditPostsRouterImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -29,8 +31,10 @@ internal class HomeScreenTest {
     fun setUp() {
         composeTestRule.setContent {
             HomeScreen(HomeViewModel(
+                router = MockRedditPostsRouterImpl(),
                 redditPostsInteractor = mockRedditPostsInteractor,
                 redditPostsModelsMapper = RedditPostsModelsMapper(),
+                postItemStateMapper = PostItemStateMapper(),
             ))
         }
     }
