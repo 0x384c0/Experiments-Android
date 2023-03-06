@@ -15,11 +15,18 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
+import com.example.domain.mock.MockRedditPostsInteractor
+import com.example.domain.model.RedditPostsModel
+import com.example.presentation.R
 import com.example.presentation.components.items.PostItem
 import com.example.presentation.data.HomeUiState
+import com.example.presentation.data.PostItemState
+import com.example.presentation.mapper.PostItemStateMapper
 import com.example.presentation.mapper.RedditPostsModelsMapper
-import com.example.domain.mock.MockRedditPostsInteractor
-import com.example.presentation.R
+import com.example.presentation.navigation.MockRedditPostsRouterImpl
+import com.example.presentation.navigation.RedditPostsRouter
+import com.example.presentation.navigation.RedditPostsRouterImpl
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +40,7 @@ internal fun HomeScreen(
     vm.state.observeAsState().value?.let {
         PostsFeedScreen(
             uiState = it,
-            onSelectPost = {},
+            onSelectPost = vm::onSelectPost,
             onRefreshPosts = { composableScope.launch { vm.refresh() } },
             onErrorDismiss = {},
             homeListLazyListState = rememberLazyListState(),
@@ -49,8 +56,10 @@ internal fun HomeScreen(
 @Composable
 internal fun HomePreview() {
     HomeScreen(HomeViewModel(
+        router = MockRedditPostsRouterImpl(),
         redditPostsInteractor = MockRedditPostsInteractor(),
-        redditPostsModelsMapper = RedditPostsModelsMapper()
+        redditPostsModelsMapper = RedditPostsModelsMapper(),
+        postItemStateMapper = PostItemStateMapper()
     ))
 }
 
@@ -60,7 +69,7 @@ internal fun HomePreview() {
 @Composable
 private fun PostsFeedScreen(
     uiState: HomeUiState,
-    onSelectPost: (String) -> Unit,
+    onSelectPost: (PostItemState) -> Unit,
     onRefreshPosts: () -> Unit,
     onErrorDismiss: (Long) -> Unit,
     homeListLazyListState: LazyListState,
@@ -78,7 +87,10 @@ private fun PostsFeedScreen(
                         modifier = Modifier.testTag("items"),
                     ) {
                         items(uiState.posts) { post ->
-                            PostItem(post)
+                            PostItem(
+                                state = post,
+                                onClick = { onSelectPost(post) }
+                            )
                         }
                     }
                 is HomeUiState.NoPosts -> Text(

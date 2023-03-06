@@ -37,7 +37,7 @@ fun AppDrawer(
     drawerState: DrawerState = rememberDrawerState(DrawerValue.Closed),
     coroutineScope: CoroutineScope,
     drawerItems: List<DrawerItemState>,
-    onItemClick: (String) -> Unit,
+    onItemClick: (DrawerItemState) -> Unit,
     content: @Composable (name: String, drawerState: DrawerState) -> Unit
 ) {
     val selectedItem = remember { mutableStateOf(drawerItems.map { it }[0]) }
@@ -55,7 +55,7 @@ fun AppDrawer(
                         onClick = {
                             coroutineScope.launch { drawerState.close() }
                             selectedItem.value = item
-                            onItemClick(item.route)
+                            onItemClick(item)
                         },
                         modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                     )

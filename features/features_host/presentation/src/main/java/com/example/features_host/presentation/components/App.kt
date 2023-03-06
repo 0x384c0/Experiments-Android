@@ -21,14 +21,15 @@ import kotlinx.coroutines.launch
 @Composable
 internal fun App(
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
-    navController: NavHostController = rememberNavController(),
+    navController: NavHostController,
+    router: FeatureHostRouter,
 ) {
-    val router = remember { FeatureHostRouter() }
+    //TODO: set navController to hilt
     AppTheme {
         AppDrawer(
             coroutineScope = coroutineScope,
             drawerItems = router.drawerItems,
-            onItemClick = { navController.navigate(it) { launchSingleTop = true } },
+            onItemClick = { router.navigate(it) },
         ) { name, drawerState ->
             AppScaffold(
                 title = name,

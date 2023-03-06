@@ -23,12 +23,13 @@ import com.example.presentation.data.PostItemState
 @Composable
 internal fun PostItem(
     state: PostItemState,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val semanticsModifier = modifier
         .padding(horizontal = 16.dp, vertical = 4.dp)
     Card(
-        modifier = semanticsModifier.clickable { },
+        modifier = semanticsModifier.clickable(onClick = onClick),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
@@ -80,7 +81,7 @@ internal fun PostItemPreview() {
         category = "r/subreddit",
         icon = Uri.EMPTY,
         title = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    ))
+    ), {})
 }
 
 

@@ -57,6 +57,7 @@ dependencies {
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.androidx.compose.ui.viewbinding)
     debugImplementation(libs.androidx.compose.ui.tooling)

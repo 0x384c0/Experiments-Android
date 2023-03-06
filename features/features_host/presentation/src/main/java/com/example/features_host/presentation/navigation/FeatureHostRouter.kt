@@ -4,37 +4,50 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
+import androidx.navigation.NavHostController
 import com.example.animations_demo.presentation.navigation.AnimationsDemoRouter
 import com.example.features_host.presentation.R
 import com.example.presentation.data.DrawerItemState
 import com.example.presentation.navigation.RedditPostsRouter
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Inject
 
 
-private const val ROUTE_REDDIT_POSTS = "ROUTE_REDDIT_POSTS"
-private const val ROUTE_ANIMATIONS = "ROUTE_ANIMATIONS"
-
-class FeatureHostRouter{
-    private val redditPostsRouter = RedditPostsRouter()
+class FeatureHostRouter @Inject constructor (
+    private val redditPostsRouter: RedditPostsRouter,
+    private val navHostController: NavHostController,
+) {
     private val animationsDemoRouter = AnimationsDemoRouter()
 
     val builder: NavGraphBuilder.() -> Unit = {
-        composable(ROUTE_REDDIT_POSTS) { redditPostsRouter.EntryPoint() }
-        composable(ROUTE_ANIMATIONS) { animationsDemoRouter.EntryPoint() }
+        animationsDemoRouter.builder(this)
+        redditPostsRouter.builder(this)
     }
 
     val drawerItems = listOf(
         DrawerItemState(
             Icons.Default.Home,
             R.string.drawer_home,
-            ROUTE_REDDIT_POSTS,
+            redditPostsRouter.startDestination,
         ),
         DrawerItemState(
             Icons.Default.PlayArrow,
             R.string.drawer_animations,
-            ROUTE_ANIMATIONS,
+            animationsDemoRouter.startDestination,
         )
     )
 
-    val startDestination = ROUTE_REDDIT_POSTS
+    val startDestination = redditPostsRouter.startDestination
+
+    fun navigate(drawerItem: DrawerItemState) {
+        navHostController.navigate(drawerItem.route) { launchSingleTop = true }
+    }
+
+    @EntryPoint
+    @InstallIn(SingletonComponent::class)
+    interface Factory {
+        fun createRouter() : FeatureHostRouter
+    }
 }
