@@ -24,7 +24,6 @@ import com.example.presentation.R
 import com.example.presentation.components.items.PostItem
 import com.example.presentation.data.HomeUiState
 import com.example.presentation.data.PostItemState
-import com.example.presentation.mapper.PostItemStateMapper
 import com.example.presentation.mapper.RedditPostsModelsMapper
 import com.example.presentation.navigation.MockRedditPostsRouterImpl
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -55,12 +54,12 @@ internal fun HomeScreen(
 @Preview
 @Composable
 internal fun HomePreview() {
-    HomeScreen(HomeViewModel(
-        router = MockRedditPostsRouterImpl(),
-        redditPostsInteractor = MockRedditPostsInteractor(),
-        redditPostsModelsMapper = RedditPostsModelsMapper(),
-        postItemStateMapper = PostItemStateMapper()
-    ))
+    HomeScreen(
+        HomeViewModel(
+            router = MockRedditPostsRouterImpl(),
+            redditPostsInteractor = MockRedditPostsInteractor(),
+            redditPostsModelsMapper = RedditPostsModelsMapper(),
+        ))
 }
 
 /**

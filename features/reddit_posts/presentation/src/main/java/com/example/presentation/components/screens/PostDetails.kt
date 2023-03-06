@@ -4,6 +4,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-internal fun PostDetails() {
-    Text(text = "TEST TEST")
+internal fun PostDetails(
+    permalink: String?,
+) {
+    Text(text = "$permalink")
 }

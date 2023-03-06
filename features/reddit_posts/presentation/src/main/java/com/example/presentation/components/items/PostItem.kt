@@ -77,6 +77,7 @@ internal fun PostItem(
 @Composable
 internal fun PostItemPreview() {
     PostItem(PostItemState(
+        permalink = "",
         author = "AuthorName",
         category = "r/subreddit",
         icon = Uri.EMPTY,

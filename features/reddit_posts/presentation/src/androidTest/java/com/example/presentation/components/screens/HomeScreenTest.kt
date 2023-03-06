@@ -34,7 +34,6 @@ internal class HomeScreenTest {
                 router = MockRedditPostsRouterImpl(),
                 redditPostsInteractor = mockRedditPostsInteractor,
                 redditPostsModelsMapper = RedditPostsModelsMapper(),
-                postItemStateMapper = PostItemStateMapper(),
             ))
         }
     }

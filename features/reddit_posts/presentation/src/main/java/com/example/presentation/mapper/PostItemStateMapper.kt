@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 internal class PostItemStateMapper @Inject constructor() : DataMapper<PostItemState, RedditPostsModel> {
     override fun map(input: PostItemState): RedditPostsModel = RedditPostsModel(
+        permalink = input.permalink,
         title = input.title,
         author = input.author,
         subredditNamePrefixed = input.category,

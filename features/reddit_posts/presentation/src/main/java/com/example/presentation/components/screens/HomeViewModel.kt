@@ -16,13 +16,12 @@ internal class HomeViewModel @Inject constructor(
     private val router: RedditPostsRouter,
     private val redditPostsInteractor: RedditPostsInteractor,
     private val redditPostsModelsMapper: RedditPostsModelsMapper,
-    private val postItemStateMapper: PostItemStateMapper,
 ) : BaseViewModel() {
     // region UI Binding
     val state = MutableLiveData<HomeUiState>(HomeUiState.NoPosts(false, listOf(), "")).asNonMutable()
 
     fun onSelectPost(postItemState: PostItemState) {
-        router.postDetails(postItemStateMapper.map(postItemState))
+        router.postDetails(postItemState.permalink)
     }
     // endregion
 

@@ -15,6 +15,8 @@ data class RedditPostDTO(
 )
 
 data class RedditPostDataDTO(
+    @SerializedName("permalink")
+    val permalink: String?,
     @SerializedName("title")
     val title: String?,
     @SerializedName("subreddit")

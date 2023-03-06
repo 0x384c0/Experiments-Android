@@ -11,6 +11,7 @@ internal class RedditPostsModelsMapper @Inject constructor() : DataMapper<List<R
     override fun map(input: List<RedditPostsModel>): HomeUiState {
         val posts = input.map { it ->
             PostItemState(
+                permalink = it.permalink ?: "",
                 author = it.author ?: "",
                 category = it.subredditNamePrefixed ?: "",
                 icon = it.thumbnail?.let { Uri.parse(it) } ?: Uri.EMPTY,
