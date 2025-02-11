@@ -13,10 +13,11 @@ class PostItemStateMapperTest {
     private lateinit var sut: PostItemStateMapper
 
     private val mockPost = PostItemState(
-        "author",
-        "category",
-        Uri.EMPTY,
-        "autgor",
+        permalink = "author",
+        author = "category",
+        icon = Uri.EMPTY,
+        category = "category",
+        title = "title",
     )
 
     @Before

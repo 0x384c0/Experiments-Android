@@ -34,9 +34,8 @@ open class MultiProgressView : BaseProgressView {
         layoutParams = layoutParams
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (canvas == null) return
         val mStrokeCap = strokeCap
         var lastEndX = 0
         for (progress in progresses) {
@@ -48,7 +47,6 @@ open class MultiProgressView : BaseProgressView {
                     color = progress.color
                     strokeJoin = Join.ROUND
                     strokeCap = mStrokeCap
-//                    xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC)
                 }
             }
             val p = Path()

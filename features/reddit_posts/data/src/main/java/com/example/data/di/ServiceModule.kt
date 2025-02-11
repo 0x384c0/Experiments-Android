@@ -1,7 +1,7 @@
 package com.example.data.di
 
-import com.example.data.BuildConfig
 import com.example.data.service.RedditApiService
+import com.example.reddit_posts.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

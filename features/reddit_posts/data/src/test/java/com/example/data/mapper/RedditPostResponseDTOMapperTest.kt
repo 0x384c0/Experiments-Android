@@ -12,14 +12,15 @@ class RedditPostResponseDTOMapperTest {
     private lateinit var sut: RedditPostResponseDTOMapper
 
     private val mockPost = RedditPostDataDTO(
-        "title",
-        "subreddit",
-        "author",
-        "subredditNamePrefixed",
-        12,
-        12,
-        3,
-        "thumbnail",
+        permalink = "title",
+        title = "subreddit",
+        subreddit = "author",
+        author = "subredditNamePrefixed",
+        subredditNamePrefixed = "12",
+        thumbnailHeight = 12,
+        thumbnailWidth = 3,
+        ups = 1,
+        thumbnail = "thumbnail",
     )
     private val mockPosts = (0..5).map { RedditPostDTO(mockPost) }
 

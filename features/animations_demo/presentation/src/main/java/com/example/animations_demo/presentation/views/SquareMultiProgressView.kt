@@ -20,7 +20,7 @@ class SquareMultiProgressView : MultiProgressView {
     private val rectPath = Path()
     private val rect = RectF(0f, 0f, 0f, 0f)
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         val measuredHeight = height.toFloat()
         val measuredWidth = width.toFloat()
         val cornerRadius = measuredHeight / 2f
@@ -29,7 +29,7 @@ class SquareMultiProgressView : MultiProgressView {
         rectPath.reset()
         rectPath.addRoundRect(rect, cornerRadius, cornerRadius, Path.Direction.CW)
 
-        canvas?.clipPath(rectPath)
+        canvas.clipPath(rectPath)
         super.onDraw(canvas)
     }
 }

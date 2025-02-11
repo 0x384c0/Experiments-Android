@@ -45,9 +45,8 @@ class ExpandableProgressView : BaseProgressView {
         invalidate()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (canvas == null) return
         val pLine = object : Paint() {
             init {
                 style = Style.STROKE

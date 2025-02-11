@@ -1,22 +1,12 @@
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-
-        if (!libs.versions.compose.snapshot.get().endsWith("SNAPSHOT")) {
-            maven { url = uri("https://androidx.dev/snapshots/builds/${libs.versions.compose.snapshot.get()}/artifacts/repository/") }
-        }
-    }
-    dependencies {
-        classpath(libs.android.gradlePlugin)
-        classpath(libs.hilt.gradlePlugin)
-        classpath(libs.kotlin.gradlePlugin)
-    }
+plugins {
+    alias(libs.plugins.gradle.versions)
+    alias(libs.plugins.version.catalog.update)
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.compose) apply false
+    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.ksp) apply false
 }
 
-subprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+apply("${project.rootDir}/buildscripts/toml-updater-config.gradle")

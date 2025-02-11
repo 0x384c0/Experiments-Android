@@ -13,11 +13,12 @@ internal class RedditPostsModelsMapperTest {
     private lateinit var sut: RedditPostsModelsMapper
 
     private val mockPost = RedditPostsModel(
-        "title",
-        "author",
-        "subredditNamePrefixed",
-        5,
-        "thumbnail",
+        permalink = "title",
+        title = "author",
+        author = "subredditNamePrefixed",
+        ups = 5,
+        subredditNamePrefixed = "subredditNamePrefixed",
+        thumbnail = "thumbnail",
     )
     private val mockPosts = (0..5).map { mockPost }
 
