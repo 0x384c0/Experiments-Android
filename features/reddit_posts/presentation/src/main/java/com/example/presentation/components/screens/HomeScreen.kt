@@ -26,6 +26,8 @@ import com.example.presentation.data.PostItemState
 import com.example.presentation.mapper.RedditPostsModelsMapper
 import com.example.presentation.navigation.MockRedditPostsRouterImpl
 import com.example.reddit_posts.presentation.R
+import com.example.utils.ScaffoldPreview
+import com.example.utils.hiltViewModelFactory
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.CoroutineScope
@@ -33,7 +35,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun HomeScreen(
-    vm: HomeViewModel = hiltViewModel(),
+    vm: HomeViewModel = hiltViewModelFactory(::mockVMFactory),
     composableScope: CoroutineScope = rememberCoroutineScope()
 ) {
     vm.state.observeAsState().value?.let {
@@ -54,13 +56,16 @@ internal fun HomeScreen(
 @Preview
 @Composable
 internal fun HomePreview() {
-    HomeScreen(
-        HomeViewModel(
-            router = MockRedditPostsRouterImpl(),
-            redditPostsInteractor = MockRedditPostsInteractor(),
-            redditPostsModelsMapper = RedditPostsModelsMapper(),
-        ))
+    ScaffoldPreview("Posts") {
+        HomeScreen()
+    }
 }
+
+private fun mockVMFactory() = HomeViewModel(
+    router = MockRedditPostsRouterImpl(),
+    redditPostsInteractor = MockRedditPostsInteractor(),
+    redditPostsModelsMapper = RedditPostsModelsMapper(),
+)
 
 /**
  * The home screen displaying just the article feed.
@@ -92,6 +97,7 @@ private fun PostsFeedScreen(
                             )
                         }
                     }
+
                 is HomeUiState.NoPosts -> Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,

@@ -5,8 +5,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.hardware.usb.UsbDevice
 import android.os.IBinder
+import com.example.usb.presentation.data.UsbDeviceState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,23 +15,28 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-class UsbServiceRepository @Inject constructor(
+internal interface UsbServiceRepository {
+    val usbDevices: StateFlow<List<UsbDeviceState>?>
+    fun bind()
+    fun unbind()
+}
+
+internal class UsbServiceRepositoryImpl @Inject constructor(
     private val application: Application
-) {
-    private val _usbDevices = MutableStateFlow<List<UsbDevice>?>(null)
-    val usbDevices: StateFlow<List<UsbDevice>?> get() = _usbDevices
+) : UsbServiceRepository {
+    private val _usbDevices = MutableStateFlow<List<UsbDeviceState>?>(null)
+    override val usbDevices: StateFlow<List<UsbDeviceState>?> get() = _usbDevices
 
     private var serviceConnection: ServiceConnection? = null
 
-
-    fun bind() {
+    override fun bind() {
         val intent = Intent(application, UsbService::class.java)
         var usbService: UsbService? = null
         serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
                 usbService = (binder as? UsbService.UsbBinder)?.getService()
                 usbService?.usbDevices?.onEach { devices ->
-                    _usbDevices.value = devices
+                    _usbDevices.value = devices.map { UsbDeviceState(usbDevice = it) }
                 }?.launchIn(CoroutineScope(Dispatchers.IO))
             }
 
@@ -42,7 +47,18 @@ class UsbServiceRepository @Inject constructor(
         application.bindService(intent, serviceConnection!!, Context.BIND_AUTO_CREATE)
     }
 
-    fun unbind() {
+    override fun unbind() {
         serviceConnection?.let { application.unbindService(it) }
     }
+}
+
+internal class UsbServiceRepositoryMockImpl : UsbServiceRepository {
+    override val usbDevices = MutableStateFlow<List<UsbDeviceState>?>(listOf(
+        UsbDeviceState("/usb/device/1", 1),
+        UsbDeviceState("/usb/device/2", 2),
+    ))
+
+    override fun bind() {}
+
+    override fun unbind() {}
 }

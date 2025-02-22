@@ -6,18 +6,18 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class UsbDevicesListViewModel @Inject constructor(
-    private val usbServiceManager: UsbServiceRepository
+internal class UsbDevicesListViewModel @Inject constructor(
+    private val usbServiceRepository: UsbServiceRepository
 ) : ViewModel() {
 
-    val usbDevices = usbServiceManager.usbDevices
+    val usbDevices = usbServiceRepository.usbDevices
 
     init {
-        usbServiceManager.bind()
+        usbServiceRepository.bind()
     }
 
     override fun onCleared() {
         super.onCleared()
-        usbServiceManager.unbind()
+        usbServiceRepository.unbind()
     }
 }
