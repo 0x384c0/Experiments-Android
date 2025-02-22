@@ -3,6 +3,7 @@ package com.example.features_host.presentation.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Usb
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraphBuilder
@@ -44,7 +45,7 @@ class FeatureHostRouter @Inject constructor(
             animationsDemoRouter.startDestination,
         ),
         DrawerItemState(
-            Icons.Default.PlayArrow,
+            Icons.Default.Usb,
             R.string.usb_demo,
             usbDemoRouter.startDestination,
         )
