@@ -2,4 +2,5 @@
 <resources>
     <string name="drawer_home">Home</string>
     <string name="drawer_animations">Test animations</string>
+    <string name="usb_demo">Usb demo</string>
 </resources>

@@ -12,6 +12,7 @@ import com.example.animations_demo.presentation.navigation.AnimationsDemoRouter
 import com.example.features_host.presentation.R
 import com.example.presentation.data.DrawerItemState
 import com.example.presentation.navigation.RedditPostsRouter
+import com.example.usb.presentation.navigation.UsbDemoRouter
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -21,12 +22,14 @@ import javax.inject.Inject
 class FeatureHostRouter @Inject constructor(
     private val redditPostsRouter: RedditPostsRouter,
     private val navHostController: NavHostController,
+    usbDemoRouter: UsbDemoRouter,
 ) {
     private val animationsDemoRouter = AnimationsDemoRouter()
 
     val builder: NavGraphBuilder.() -> Unit = {
         animationsDemoRouter.builder(this)
         redditPostsRouter.builder(this)
+        usbDemoRouter.builder(this)
     }
 
     val drawerItems = listOf(
@@ -39,6 +42,11 @@ class FeatureHostRouter @Inject constructor(
             Icons.Default.PlayArrow,
             R.string.drawer_animations,
             animationsDemoRouter.startDestination,
+        ),
+        DrawerItemState(
+            Icons.Default.PlayArrow,
+            R.string.usb_demo,
+            usbDemoRouter.startDestination,
         )
     )
 

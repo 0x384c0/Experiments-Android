@@ -7,18 +7,14 @@ plugins {
 }
 
 android {
-    namespace = "com.example.features_host.presentation"
+    namespace = "com.example.usb.presentation"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -36,7 +32,6 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        compose = true
     }
 }
 
@@ -51,18 +46,20 @@ dependencies {
     androidTestImplementation(composeBom)
 
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.runtime.livedata)
+    implementation(libs.androidx.lifecycle.viewModelCompose)
     implementation(libs.androidx.compose.material.iconsExtended)
-    implementation(libs.androidx.activity.compose)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.accompanist.swiperefresh)
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    //UI Libs
+    implementation(libs.coil.kt.compose)
 
     // Hilt
     implementation(libs.hilt.android)
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
 
-    //App
-    implementation(project(":features:reddit_posts:presentation"))
-    implementation(project(":features:animations_demo:presentation"))
-    implementation(project(":features:usb_demo:presentation"))
+    // App
+    implementation(project(":common:util"))
 }

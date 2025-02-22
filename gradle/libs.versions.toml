@@ -24,6 +24,7 @@ retrofit = "2.9.0"
 robolectric = "4.5.1"
 targetSdk = "33"
 version-catalog-update = "0.8.5"
+espressoCore = "3.6.1"
 
 [libraries]
 accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanist" }
@@ -50,6 +51,7 @@ junit = { module = "junit:junit", version.ref = "junit" }
 squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 squareup-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

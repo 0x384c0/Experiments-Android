@@ -46,4 +46,5 @@ dependencies {
     implementation(project(":features:reddit_posts:domain"))
     implementation(project(":features:reddit_posts:data"))
     implementation(project(":features:features_host:presentation"))
+    implementation(project(":features:usb_demo:presentation"))
 }
