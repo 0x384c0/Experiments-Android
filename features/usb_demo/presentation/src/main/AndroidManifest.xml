@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <application />
+    <uses-feature android:name="android.hardware.usb.host" />
+
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+
+    <application>
+        <service
+            android:enabled="true"
+            android:name=".service.UsbService" />
+    </application>
 
 </manifest>
