@@ -23,6 +23,7 @@ retrofit = "2.9.0"
 # @pin Bump to latest after Espresso 3.5.0 goes stable (due to https://github.com/robolectric/robolectric/issues/6593)
 robolectric = "4.5.1"
 targetSdk = "33"
+usbSerialForAndroid = "3.8.1"
 version-catalog-update = "0.8.5"
 espressoCore = "3.6.1"
 
@@ -52,6 +53,7 @@ squareup-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = 
 squareup-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+embedded-usbserialforandroid = { module = "com.github.mik3y:usb-serial-for-android", version.ref = "usbSerialForAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

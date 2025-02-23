@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven(url = uri("https://jitpack.io")) // used by https://github.com/mik3y/usb-serial-for-android
     }
 }
 rootProject.name = "Experiments-Android"

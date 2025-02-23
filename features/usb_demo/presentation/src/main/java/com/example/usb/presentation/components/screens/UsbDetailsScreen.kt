@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +32,8 @@ internal fun UsbDetailsScreen(
 
     Column(modifier = Modifier
         .fillMaxWidth()
-        .padding(16.dp)) {
+        .padding(16.dp)
+    ) {
         if (deviceName != null) {
             LaunchedEffect(deviceName) {
                 vm.readData()
@@ -41,7 +46,18 @@ internal fun UsbDetailsScreen(
             Spacer(modifier = Modifier.size(16.dp))
 
             val usbDeviceData = vm.usbDeviceData?.collectAsState()?.value
-            Text(text = usbDeviceData ?: stringResource(id = R.string.no_data))
+            if (usbDeviceData != null && usbDeviceData.isNotEmpty()) {
+                LazyColumn(
+                    modifier = Modifier
+                        .verticalScroll(rememberScrollState())
+                ) {
+                    items(usbDeviceData) { data ->
+                        Text(text = data)
+                    }
+                }
+            } else {
+                Text(text = stringResource(id = R.string.no_data))
+            }
         } else {
             Text(text = stringResource(id = R.string.no_device_selected), color = MaterialTheme.colorScheme.error)
         }
