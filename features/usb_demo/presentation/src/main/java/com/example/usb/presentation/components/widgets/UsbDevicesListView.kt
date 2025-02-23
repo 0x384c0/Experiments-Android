@@ -8,7 +8,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.usb.presentation.components.items.USBDeviceItem
 import com.example.usb.presentation.data.UsbDeviceState
 import com.example.usb.presentation.service.UsbServiceRepositoryMockImpl
 import com.example.utils.hiltViewModelFactory

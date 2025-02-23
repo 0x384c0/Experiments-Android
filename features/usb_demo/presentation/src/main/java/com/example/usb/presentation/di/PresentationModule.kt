@@ -17,7 +17,7 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 internal abstract class PresentationModule {
     @Binds
-    abstract fun provideUsbDemoInteractor(impl: UsbDemoRouterImpl): UsbDemoRouter
+    abstract fun provideUsbDemoRouter(impl: UsbDemoRouterImpl): UsbDemoRouter
 
     @Binds
     abstract fun provideUsbServiceRepository(impl: UsbServiceRepositoryImpl): UsbServiceRepository

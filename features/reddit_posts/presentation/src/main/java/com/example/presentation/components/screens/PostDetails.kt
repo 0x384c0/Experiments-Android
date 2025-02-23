@@ -7,5 +7,5 @@ import androidx.compose.runtime.Composable
 internal fun PostDetails(
     permalink: String?,
 ) {
-    Text(text = "$permalink")
+    Text(text = permalink.toString())
 }

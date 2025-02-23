@@ -1,4 +1,4 @@
-package com.example.usb.presentation.components.items
+package com.example.usb.presentation.components.widgets
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -38,7 +38,7 @@ internal fun USBDeviceItem(
                 .padding(20.dp)
         ) {
             Text(
-                text = state.name,
+                text = state.deviceName,
                 style = MaterialTheme.typography.labelLarge
             )
             Spacer(modifier = Modifier.size(8.dp))
@@ -46,7 +46,7 @@ internal fun USBDeviceItem(
             val fields = listOf(
                 "Product Name" to state.productName.toString(),
                 "Manufacturer Name" to state.manufacturerName.toString(),
-                "Id" to state.id.toString(),
+                "Id" to state.deviceId.toString(),
                 "Device Class" to state.deviceClass.toString(),
                 "Device Subclass" to state.deviceSubclass.toString(),
                 "Device Protocol" to state.deviceProtocol.toString(),
