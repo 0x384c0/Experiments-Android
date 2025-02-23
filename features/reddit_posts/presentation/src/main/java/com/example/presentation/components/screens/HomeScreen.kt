@@ -18,16 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.domain.mock.MockRedditPostsInteractor
 import com.example.presentation.components.items.PostItem
 import com.example.presentation.data.HomeUiState
 import com.example.presentation.data.PostItemState
-import com.example.presentation.mapper.RedditPostsModelsMapper
-import com.example.presentation.navigation.MockRedditPostsRouterImpl
 import com.example.reddit_posts.presentation.R
 import com.example.utils.ScaffoldPreview
-import com.example.utils.hiltViewModelFactory
+import com.example.utils.hiltViewModelWithPreview
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.coroutines.CoroutineScope
@@ -35,7 +31,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 internal fun HomeScreen(
-    vm: HomeViewModel = hiltViewModelFactory(::mockVMFactory),
+    vm: HomeViewModel = hiltViewModelWithPreview(HomeViewModel.mock()),
     composableScope: CoroutineScope = rememberCoroutineScope()
 ) {
     vm.state.observeAsState().value?.let {
@@ -60,12 +56,6 @@ internal fun HomePreview() {
         HomeScreen()
     }
 }
-
-private fun mockVMFactory() = HomeViewModel(
-    router = MockRedditPostsRouterImpl(),
-    redditPostsInteractor = MockRedditPostsInteractor(),
-    redditPostsModelsMapper = RedditPostsModelsMapper(),
-)
 
 /**
  * The home screen displaying just the article feed.

@@ -13,12 +13,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.usb.presentation.components.widgets.UsbDevicesListView
 import com.example.usb.presentation.data.UsbDeviceState
-import com.example.usb.presentation.navigation.MockUsbDemoRouterImpl
 import com.example.utils.ScaffoldPreview
-import com.example.utils.hiltViewModelFactory
+import com.example.utils.hiltViewModelWithPreview
 
 @Composable
-internal fun UsbDemoScreen(vm: UsbDemoScreenViewModel = hiltViewModelFactory(::mockVMFactory)) {
+internal fun UsbDemoScreen(vm: UsbDemoScreenViewModel = hiltViewModelWithPreview(UsbDemoScreenViewModel.mock())) {
     val context = LocalContext.current
     UsbDevicesListView(onDeviceClick = { usbDevice ->
         checkPermissions(
@@ -77,5 +76,3 @@ private fun checkPermissions(context: Context, usbDevice: UsbDeviceState, onPerm
 internal fun UsbDemoScreenPreview() {
     ScaffoldPreview("USB Demo") { UsbDemoScreen() }
 }
-
-private fun mockVMFactory() = UsbDemoScreenViewModel(router = MockUsbDemoRouterImpl())

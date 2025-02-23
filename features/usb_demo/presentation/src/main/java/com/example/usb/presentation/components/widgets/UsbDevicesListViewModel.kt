@@ -2,6 +2,7 @@ package com.example.usb.presentation.components.widgets
 
 import androidx.lifecycle.ViewModel
 import com.example.usb.presentation.service.UsbServiceRepository
+import com.example.usb.presentation.service.UsbServiceRepositoryMockImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -19,5 +20,9 @@ internal class UsbDevicesListViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         usbServiceRepository.unbind()
+    }
+
+    companion object {
+        fun mock() = UsbDevicesListViewModel(usbServiceRepository = UsbServiceRepositoryMockImpl())
     }
 }

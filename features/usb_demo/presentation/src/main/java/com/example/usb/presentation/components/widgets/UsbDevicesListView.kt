@@ -9,12 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.usb.presentation.data.UsbDeviceState
-import com.example.usb.presentation.service.UsbServiceRepositoryMockImpl
-import com.example.utils.hiltViewModelFactory
+import com.example.utils.hiltViewModelWithPreview
 
 @Composable
 internal fun UsbDevicesListView(
-    vm: UsbDevicesListViewModel = hiltViewModelFactory(::mockVMFactory),
+    vm: UsbDevicesListViewModel = hiltViewModelWithPreview(UsbDevicesListViewModel.mock()),
     onDeviceClick: (UsbDeviceState) -> Unit,
 ) {
     val usbDevices = vm.usbDevices.collectAsState().value
@@ -40,8 +39,6 @@ internal fun UsbDevicesListView(
         }
     }
 }
-
-private fun mockVMFactory() = UsbDevicesListViewModel(usbServiceRepository = UsbServiceRepositoryMockImpl())
 
 @Preview
 @Composable
