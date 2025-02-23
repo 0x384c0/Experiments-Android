@@ -63,5 +63,5 @@ internal class UsbServiceRepositoryMockImpl : UsbServiceRepository {
 
     override fun bind() {}
     override fun unbind() {}
-    override suspend fun readData(deviceName: String): String? = null
+    override suspend fun readData(deviceName: String): String? = "Example USB device data"
 }
