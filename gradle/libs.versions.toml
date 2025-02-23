@@ -18,7 +18,7 @@ kotlin = "2.0.0"
 ksp = "2.0.0-1.0.22"
 jvmTarget = "21"
 material = "1.12.0"
-minSdk = "21"
+minSdk = "23"
 retrofit = "2.9.0"
 # @pin Bump to latest after Espresso 3.5.0 goes stable (due to https://github.com/robolectric/robolectric/issues/6593)
 robolectric = "4.5.1"

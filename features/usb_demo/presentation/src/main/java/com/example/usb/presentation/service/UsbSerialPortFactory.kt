@@ -68,8 +68,8 @@ internal class UsbSerialPortFactoryMockImpl @Inject constructor() : UsbSerialPor
         baudRate: Int,
         dataBits: Int,
     ): Flow<String> = flow {
-        emit("Test data 1")
-        emit("Test data 2")
-        emit("Test data 3")
+        for (i in 1..100) {
+            emit("Test data $i")
+        }
     }
 }
