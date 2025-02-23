@@ -37,7 +37,7 @@ internal fun PostItem(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp)
+                .padding(16.dp)
         ) {
             Row(modifier = Modifier.fillMaxWidth()) {
                 CircleImage(

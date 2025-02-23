@@ -35,7 +35,19 @@ fun ScaffoldPreview(title: String, content: @Composable () -> Unit) {
  * A utility function to provide a ViewModel instance for previews and live views.
  *
  * @param mockVM A mock ViewModel instance.
- * @return A ViewModel instance.
+ * @return A ViewModel instance
  */
 @Composable
 inline fun <reified VM : ViewModel> hiltViewModelWithPreview(mockVM: VM): VM = if (LocalInspectionMode.current) mockVM else hiltViewModel<VM>()
+
+/**
+ * A utility function to provide a ViewModel instance for previews and live views.
+ *
+ * @param mockVM A mock ViewModel instance.
+ * @return A ViewModel instance ViewModel with an @AssistedInject-annotated constructor
+ */
+@Composable
+inline fun <reified VM : ViewModel, reified VMF> hiltViewModelWithPreview(
+    mockVM: VM,
+    noinline creationCallback: (VMF) -> VM
+): VM = if (LocalInspectionMode.current) mockVM else hiltViewModel<VM, VMF>(creationCallback = creationCallback)

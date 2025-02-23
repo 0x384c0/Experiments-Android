@@ -19,6 +19,7 @@ internal interface UsbServiceRepository {
     val usbDevices: StateFlow<List<UsbDeviceState>?>
     fun bind()
     fun unbind()
+    suspend fun readData(deviceName: String): String?
 }
 
 internal class UsbServiceRepositoryImpl @Inject constructor(
@@ -28,10 +29,10 @@ internal class UsbServiceRepositoryImpl @Inject constructor(
     override val usbDevices: StateFlow<List<UsbDeviceState>?> get() = _usbDevices
 
     private var serviceConnection: ServiceConnection? = null
+    var usbService: UsbService? = null
 
     override fun bind() {
         val intent = Intent(application, UsbService::class.java)
-        var usbService: UsbService? = null
         serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, binder: IBinder?) {
                 usbService = (binder as? UsbService.UsbBinder)?.getService()
@@ -50,6 +51,8 @@ internal class UsbServiceRepositoryImpl @Inject constructor(
     override fun unbind() {
         serviceConnection?.let { application.unbindService(it) }
     }
+
+    override suspend fun readData(deviceName: String): String? = usbService?.readData(deviceName = deviceName)
 }
 
 internal class UsbServiceRepositoryMockImpl : UsbServiceRepository {
@@ -59,6 +62,6 @@ internal class UsbServiceRepositoryMockImpl : UsbServiceRepository {
     ))
 
     override fun bind() {}
-
     override fun unbind() {}
+    override suspend fun readData(deviceName: String): String? = null
 }

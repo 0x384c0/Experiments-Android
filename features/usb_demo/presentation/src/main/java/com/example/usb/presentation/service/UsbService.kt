@@ -10,9 +10,11 @@ import android.hardware.usb.UsbManager
 import android.os.Binder
 import android.os.IBinder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -56,5 +58,21 @@ class UsbService : Service() {
 
     inner class UsbBinder : Binder() {
         fun getService(): UsbService = this@UsbService
+    }
+
+    suspend fun readData(deviceName: String): String? = withContext(Dispatchers.IO) {
+        val usbDevice = usbManager.deviceList?.values?.find { it.deviceName == deviceName }
+        usbDevice?.let { device ->
+            val connection = usbManager.openDevice(device)
+            connection?.let {
+                val buffer = ByteArray(64)
+                val bytesRead = it.bulkTransfer(device.getInterface(0).getEndpoint(0), buffer, buffer.size, 1000)
+                it.close()
+                if (bytesRead > 0) {
+                    return@withContext String(buffer, 0, bytesRead)
+                }
+            }
+        }
+        return@withContext null
     }
 }

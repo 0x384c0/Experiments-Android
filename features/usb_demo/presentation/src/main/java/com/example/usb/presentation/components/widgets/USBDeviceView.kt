@@ -21,13 +21,13 @@ import com.example.usb.presentation.data.UsbDeviceState
 @Composable
 internal fun USBDeviceItem(
     state: UsbDeviceState,
-    onClick: () -> Unit,
+    onClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
     val semanticsModifier = modifier
         .padding(horizontal = 16.dp, vertical = 4.dp)
     Card(
-        modifier = semanticsModifier.clickable(onClick = onClick),
+        modifier = if (onClick != null) semanticsModifier.clickable(onClick = onClick) else Modifier,
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
@@ -35,7 +35,7 @@ internal fun USBDeviceItem(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp)
+                .padding(16.dp)
         ) {
             Text(
                 text = state.deviceName,
