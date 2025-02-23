@@ -54,8 +54,8 @@ internal class UsbServiceRepositoryImpl @Inject constructor(
 
 internal class UsbServiceRepositoryMockImpl : UsbServiceRepository {
     override val usbDevices = MutableStateFlow<List<UsbDeviceState>?>(listOf(
-        UsbDeviceState("/usb/device/1", 1),
-        UsbDeviceState("/usb/device/2", 2),
+        UsbDeviceState.mock(),
+        UsbDeviceState.mock(),
     ))
 
     override fun bind() {}
