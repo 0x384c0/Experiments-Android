@@ -21,18 +21,15 @@ import com.example.utils.hiltViewModelWithPreview
 
 @Composable
 internal fun UsbDetailsScreen(
-    deviceName: String?,
-    vm: UsbDetailsScreenViewModel = hiltViewModelWithPreview<UsbDetailsScreenViewModel, UsbDetailsScreenViewModel.Factory>(
+    deviceName: String?, vm: UsbDetailsScreenViewModel = hiltViewModelWithPreview<UsbDetailsScreenViewModel, UsbDetailsScreenViewModel.Factory>(
         UsbDetailsScreenViewModel.mock(deviceName),
     ) { factory -> factory.create(deviceName) }
 ) {
 
-    if (deviceName != null) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ) {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp)) {
+        if (deviceName != null) {
             LaunchedEffect(deviceName) {
                 vm.readData()
             }
@@ -45,9 +42,9 @@ internal fun UsbDetailsScreen(
 
             val usbDeviceData = vm.usbDeviceData?.collectAsState()?.value
             Text(text = usbDeviceData ?: stringResource(id = R.string.no_data))
+        } else {
+            Text(text = stringResource(id = R.string.no_device_selected), color = MaterialTheme.colorScheme.error)
         }
-    } else {
-        Text(text = stringResource(id = R.string.no_device_selected), color = MaterialTheme.colorScheme.error)
     }
 }
 
