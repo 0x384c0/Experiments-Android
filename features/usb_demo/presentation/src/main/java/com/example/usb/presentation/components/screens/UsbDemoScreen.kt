@@ -38,7 +38,7 @@ private fun checkPermissions(context: Context, usbDevice: UsbDeviceState, onPerm
             onPermissionGranted()
         } else {
             val permissionIntent = PendingIntent.getBroadcast(
-                context, 0, Intent(ACTION_USB_PERMISSION), 0
+                context, 0, Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_IMMUTABLE
             )
             usbManager.requestPermission(device, permissionIntent)
             val receiver =

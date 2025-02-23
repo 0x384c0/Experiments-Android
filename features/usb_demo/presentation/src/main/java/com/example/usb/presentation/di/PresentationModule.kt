@@ -4,6 +4,8 @@ import android.content.Context
 import android.hardware.usb.UsbManager
 import com.example.usb.presentation.navigation.UsbDemoRouter
 import com.example.usb.presentation.navigation.UsbDemoRouterImpl
+import com.example.usb.presentation.service.UsbSerialPortFactory
+import com.example.usb.presentation.service.UsbSerialPortFactoryImpl
 import com.example.usb.presentation.service.UsbServiceRepository
 import com.example.usb.presentation.service.UsbServiceRepositoryImpl
 import dagger.Binds
@@ -21,6 +23,9 @@ internal abstract class PresentationModule {
 
     @Binds
     abstract fun provideUsbServiceRepository(impl: UsbServiceRepositoryImpl): UsbServiceRepository
+
+    @Binds
+    abstract fun provideUsbSerialPortFactory(impl: UsbSerialPortFactoryImpl): UsbSerialPortFactory
 
     companion object {
         @Provides
