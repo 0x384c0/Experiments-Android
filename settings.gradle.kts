@@ -26,4 +26,6 @@ include(":features:animations_demo:presentation")
 include(":features:reddit_posts:presentation")
 include(":features:reddit_posts:domain")
 include(":features:reddit_posts:data")
+//USB
 include(":features:usb_demo:presentation")
+include(":features:usb_demo:external:libusb")
