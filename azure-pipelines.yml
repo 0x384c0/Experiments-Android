@@ -1,0 +1,76 @@
+trigger: none
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: Build
+    displayName: "Build"
+    jobs:
+      - job: BuildJob
+        displayName: "Clean and Build"
+        steps:
+          - task: Gradle@4
+            displayName: "Clean and Build"
+            inputs:
+              gradleWrapperFile: 'gradlew'
+              tasks: 'clean build'
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '1.17'
+          - task: PublishPipelineArtifact@1
+            displayName: "Publish Build Artifacts"
+            inputs:
+              targetPath: 'sdk/build'
+              artifact: 'buildFiles'
+  - stage: Test
+    displayName: "Test"
+    dependsOn: Build
+    jobs:
+      - job: TestJob
+        displayName: "Run Tests"
+        steps:
+          - task: DownloadPipelineArtifact@2
+            displayName: "Download Build Artifacts"
+            inputs:
+              artifact: 'buildFiles'
+              targetPath: 'sdk/build'
+          - script: ls -la
+            displayName: "List files in the artifact directory"
+          - task: Gradle@4
+            displayName: "Test"
+            inputs:
+              gradleWrapperFile: 'gradlew'
+              tasks: 'test'
+              testResultsFiles: '**/TEST-*.xml'
+              javaHomeOption: 'JDKVersion'
+              jdkVersionOption: '1.17'
+  - stage: Publish
+    displayName: "Publish"
+    dependsOn:
+      - Build
+      - Test
+    jobs:
+      - deployment: PublishDeployment
+        displayName: "Deploy - Publish"
+        environment: 'production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - task: DownloadPipelineArtifact@2
+                  displayName: "Download Build Artifacts"
+                  inputs:
+                    artifact: 'buildFiles'
+                    targetPath: 'sdk/build'
+                - script: ls -la
+                  displayName: "List files in the artifact directory"
+                - task: Gradle@4
+                  displayName: "Publish"
+                  inputs:
+                    gradleWrapperFile: 'gradlew'
+                    workingDirectory: '$(Build.Repository.LocalPath)'
+                    tasks: 'publish'
+                    javaHomeOption: 'JDKVersion'
+                    jdkVersionOption: '1.17'
+                  env:
+                    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
