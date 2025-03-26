@@ -46,7 +46,7 @@ stages:
           - task: PublishCodeCoverageResults@2
             displayName: "Publish Code Coverage Results"
             inputs:
-              summaryFileLocation: 'app/build/reports/jacoco/testWithCoverageReport/testWithCoverageReport.xml'
+              summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/build/reports/jacoco/testWithCoverageReport/testWithCoverageReport.xml'
               pathToSources: '$(System.DefaultWorkingDirectory)/app/src/main/java/'
   - stage: Publish
     displayName: "Publish"
