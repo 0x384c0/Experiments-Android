@@ -50,3 +50,6 @@ dependencies {
     implementation(project(":features:features_host:presentation"))
     implementation(project(":features:usb_demo:presentation"))
 }
+
+// publish_maven
+extra["publishMavenVersion"] = "1.0.0"
